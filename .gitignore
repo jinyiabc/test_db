@@ -1,1 +1,2 @@
-mysql.cfg
+*.cfg
+config.*
