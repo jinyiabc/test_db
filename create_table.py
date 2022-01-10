@@ -2,17 +2,7 @@ from __future__ import print_function
 
 import mysql.connector
 from mysql.connector import errorcode
-import config
-
-cfg = config.Config('mysql.cfg')
-
-config = {
-  'user': cfg['user'],
-  'password': cfg['password'],
-  'host': cfg['host'],
-  'database': 'employees',
-  'raise_on_warnings': True
-}
+from helper.configSQL import config
 
 DB_NAME = 'employees'
 

@@ -1,17 +1,8 @@
 from __future__ import print_function
 from datetime import date, datetime, timedelta
 import mysql.connector
-import config
+from helper.configSQL import config
 
-cfg = config.Config('mysql.cfg')
-
-config = {
-  'user': cfg['user'],
-  'password': cfg['password'],
-  'host': cfg['host'],
-  'database': 'employees',
-  'raise_on_warnings': True
-}
 cnx = mysql.connector.connect(**config)
 cursor = cnx.cursor()
 
