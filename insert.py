@@ -6,28 +6,14 @@ from helper.configSQL import config
 cnx = mysql.connector.connect(**config)
 cursor = cnx.cursor()
 
+# emp_no = cursor.lastrowid
 tomorrow = datetime.now().date() + timedelta(days=1)
-emp_no = cursor.lastrowid
-add_employee = ("INSERT INTO employees "
-               "(emp_no, first_name, last_name, hire_date, gender, birth_date) "
-               "VALUES (%s, %s, %s, %s, %s, %s)")
-data_employee = (emp_no, 'Geert', 'Vanderkelen', tomorrow, 'M', date(1977, 6, 14))
-# Insert new employee
-cursor.execute(add_employee, data_employee)
+add_sector = ("INSERT INTO 000300_SH "
+               "(wind_code, date, i_weight) "
+               "VALUES (%s, %s, %s)")
+data_sector = ('000001.SZ','2021-12-02', '0.8638')
+cursor.execute(add_sector, data_sector)
 
-emp_no = cursor.lastrowid
-add_salary = ("INSERT INTO salaries "
-              "(emp_no, salary, from_date, to_date) "
-              "VALUES (%(emp_no)s, %(salary)s, %(from_date)s, %(to_date)s)")
-data_salary = {
-  'emp_no': emp_no,
-  'salary': 50000,
-  'from_date': tomorrow,
-  'to_date': date(9999, 1, 1),
-}
-# Insert salary information
-
-cursor.execute(add_salary, data_salary)
 
 # Make sure data is committed to the database
 cnx.commit()
